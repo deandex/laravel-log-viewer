@@ -1,0 +1,26 @@
+{
+    "name": "deandex/laravel-log-viewer",
+    "description": "Log viewer for laravel project",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Noviandra Syahputra",
+            "email": "andrazone@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Deandex\\LaravelLogViewer\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Deandex\\LaravelLogViewer\\LaravelLogViewerServiceProvider"
+            ]
+        }
+    }
+}
