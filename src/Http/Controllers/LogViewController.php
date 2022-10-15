@@ -27,4 +27,18 @@ class LogViewController extends Controller
 
         return view('logviewer::log-view.index', compact('logs', 'log', 'lines'));
     }
+
+    public function download()
+    {
+        $fileName = request('file');
+
+        if ($fileName && file_exists(storage_path('logs/' . $fileName))) {
+            $path = storage_path('logs/' . $fileName);
+            $downloadFileName = env('APP_ENV') . '.' . str_replace("/", '_', $fileName) ;
+
+            return response()->download($path, $downloadFileName);
+        }
+
+        return 'Invalid file name.';
+    }
 }
