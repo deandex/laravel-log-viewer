@@ -22,14 +22,17 @@
         <div class="container mx-auto p-4">
             <div class="flex justify-between py-3">
                 <h1 class="text-lg">Log Viewer - {{ $log }}</h1>
-                <form id="log-form">
-                    <select name="log" id="log" class="border-2 rounded border-blue-400 bg-white p-1" onchange="document.getElementById('log-form').submit();">
-                        <option value="">-- Pilih Log --</option>
-                        @foreach ($logs as $item)
-                            <option value="{{ $item['value'] }}" {{ $item['value'] == $log ? 'selected' : '' }}>{{ $item['label'] }}</option>
-                        @endforeach
-                    </select>
-                </form>
+                <div class="flex items-center">
+                    <a href="{{ route('log_view.download', ['file' => $log]) }}" class="mr-2">Download</a>
+                    <form id="log-form">
+                        <select name="log" id="log" class="border-2 rounded border-blue-400 bg-white p-1" onchange="document.getElementById('log-form').submit();">
+                            <option value="">-- Pilih Log --</option>
+                            @foreach ($logs as $item)
+                                <option value="{{ $item['value'] }}" {{ $item['value'] == $log ? 'selected' : '' }}>{{ $item['label'] }}</option>
+                            @endforeach
+                        </select>
+                    </form>
+                </div>
             </div>
             <textarea class="text-xs h-auto w-full bg-gray-900 text-gray-300" rows="30" disabled>{{ $lines }}</textarea>
         </div>
