@@ -31,7 +31,7 @@
                     </select>
                 </form>
             </div>
-            <textarea class="text-xs h-auto w-full bg-gray-900 text-gray-300" rows="30">{{ $lines }}</textarea>
+            <textarea class="text-xs h-auto w-full bg-gray-900 text-gray-300" rows="30" disabled>{{ $lines }}</textarea>
         </div>
     </body>
 </html>
