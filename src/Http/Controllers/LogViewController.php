@@ -34,11 +34,25 @@ class LogViewController extends Controller
 
         if ($fileName && file_exists(storage_path('logs/' . $fileName))) {
             $path = storage_path('logs/' . $fileName);
-            $downloadFileName = env('APP_ENV') . '.' . str_replace("/", '_', $fileName) ;
+            $downloadFileName = env('APP_ENV') . '.' . str_replace("/", '_', $fileName);
 
             return response()->download($path, $downloadFileName);
         }
 
-        return 'Invalid file name.';
+        return 'Invalid file name to download.';
+    }
+
+    public function destroy()
+    {
+        $fileName = request('file');
+
+        if ($fileName && file_exists(storage_path('logs/' . $fileName))) {
+            $path = storage_path('logs/' . $fileName);
+            FileFacade::delete($path);
+
+            return redirect()->route('log_view.index');
+        }
+
+        return 'Invalid file name to delete.';
     }
 }
