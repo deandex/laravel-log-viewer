@@ -21,15 +21,17 @@
     <body class="antialiased">
         <div class="container mx-auto p-4">
             <div class="flex justify-between items-center pb-3">
-                <h1 class="text-lg font-bold">Log Viewer - <span class="text-sky-700">{{ $log }}</span></h1>
+                <h1 class="text-lg font-bold">Log Viewer @if ($log)- <span class="text-sky-700">{{ $log }}</span> @endif</h1>
                 <div class="flex items-center">
-                    <a href="{{ route('log_view.download', ['file' => $log]) }}" class="mr-2">Download</a>
-                    <form method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <input type="hidden" name="file" value="{{ $log }}">
-                        <button class="bg-red-500 hover:bg-red-600 text-white px-5 py-1 rounded mr-2" type="submit">Delete</button>
-                    </form>
+                    @if ($log)
+                        <a href="{{ route('log_view.download', ['file' => $log]) }}" class="bg-stone-500 hover:bg-stone-600 text-white px-5 py-1 rounded mr-2">Download</a>
+                        <form method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="file" value="{{ $log }}">
+                            <button class="bg-red-500 hover:bg-red-600 text-white px-5 py-1 rounded mr-2" type="submit">Delete</button>
+                        </form>
+                    @endif
                     <form id="log-form">
                         <select name="log" id="log" class="border-2 rounded border-blue-400 bg-white p-1" onchange="document.getElementById('log-form').submit();">
                             <option value="">-- Pilih Log --</option>
